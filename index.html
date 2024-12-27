@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="survey-container">
+        <h1>Customer Satisfaction Survey</h1>
+        <form id="surveyForm">
+            <!-- New Name Question -->
+            <div class="question">
+                <label for="name">Hi, is your name Jinny Park?</label><br>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <!-- New Age Question -->
+            <div class="question">
+                <label for="age">What would you like for dinner tomorrow night?</label><br>
+                <input type="number" id="age" name="age" required>
+            </div>
+
+            <!-- Satisfaction Question -->
+            <div class="question">
+                <label for="q1">How satisfied are you with Bran's service?</label><br>
+                <input type="radio" id="q1_1" name="q1" value="Very Satisfied">
+                <label for="q1_1">Very Satisfied</label><br>
+                <input type="radio" id="q1_2" name="q1" value="Satisfied">
+                <label for="q1_2">Satisfied</label><br>
+                <input type="radio" id="q1_3" name="q1" value="Neutral">
+                <label for="q1_3">Neutral</label><br>
+                <input type="radio" id="q1_4" name="q1" value="Dissatisfied">
+                <label for="q1_4">Dissatisfied</label><br>
+                <input type="radio" id="q1_5" name="q1" value="Very Dissatisfied">
+                <label for="q1_5">Very Dissatisfied</label>
+            </div>
+            
+          
+
+            <!-- Submit Button -->
+            <div class="submit-button">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+</body>
+</html>
+
