@@ -31,7 +31,7 @@ document.getElementById('surveyForm').addEventListener('submit', function(event)
     };
 
     // Send the email using EmailJS
-    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+    emailjs.send("service_arucd5v", "template_z0i86kb", {
         name: surveyData.name,
         age: surveyData.age,
         satisfaction: surveyData.satisfaction,
