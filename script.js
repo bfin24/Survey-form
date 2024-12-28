@@ -5,9 +5,9 @@ const sendEmail = async (emailData) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            service_id: 'YOUR_SERVICE_ID', // Your service ID
-            template_id: 'YOUR_TEMPLATE_ID', // Your template ID
-            user_id: 'YOUR_USER_ID', // Your user ID
+            service_id: 'service_lrlanqn', // Your service ID
+            template_id: 'template_d2tugoi', // Your template ID
+            user_id: 'qXxU3s6g3wE7uLHV9', // Your user ID
             template_params: emailData
         }),
     });
