@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey Form</title>
     <!-- Load the new EmailJS SDK -->
-    <script type="module" src="https://cdn.emailjs.com/dist/email.min.latest.js"></script>
+    <script type="module" src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
             <!-- Satisfaction Question -->
             <div class="question">
                 <label for="q1">How satisfied are you with our product?</label><br>
-                <input type="radio" id="q1_1" name="q1" value="Very Satisfied">
+                <input type="radio" id="q1_1" name="q1" value="Very Satisfied" required>
                 <label for="q1_1">Very Satisfied</label><br>
                 <input type="radio" id="q1_2" name="q1" value="Satisfied">
                 <label for="q1_2">Satisfied</label><br>
@@ -55,5 +55,6 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
