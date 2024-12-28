@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const emailData = {
             service_id: 'service_lrlanqn', // Replace with your EmailJS service ID
             template_id: 'template_d2tugoi', // Replace with your EmailJS template ID
-            user_id: 'qXxU3s6g3wE7uLHV9D', // Replace with your EmailJS user ID
+            user_id: 'qXxU3s6g3wE7uLHV9', // Replace with your EmailJS user ID
             template_params: {
                 name: name,
                 age: age,
