@@ -1,20 +1,34 @@
-// Initialize EmailJS with your User ID
-emailjs.init('qXxU3s6g3wE7uLHV9');  // Replace with your actual EmailJS User ID
+const sendEmail = async (emailData) => {
+    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            service_id: 'YOUR_SERVICE_ID', // Your service ID
+            template_id: 'YOUR_TEMPLATE_ID', // Your template ID
+            user_id: 'YOUR_USER_ID', // Your user ID
+            template_params: emailData
+        }),
+    });
+    const result = await response.json();
+    if (response.ok) {
+        alert('Thank you for your feedback!');
+    } else {
+        console.error('Email sending failed:', result);
+        alert('There was an error sending your feedback. Please try again later.');
+    }
+};
 
-// Get the survey form
-const form = document.getElementById('surveyForm');
-
-// Listen for the form submission
 form.addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevent the default form submission behavior
+    event.preventDefault(); // Prevent default form submission
 
-    // Collect data from the form
+    // Collect form data
     const name = document.getElementById('name').value;
     const age = document.getElementById('age').value;
-    const satisfaction = document.querySelector('input[name="q1"]:checked') ? document.querySelector('input[name="q1"]:checked').value : "Not Answered"; 
+    const satisfaction = document.querySelector('input[name="q1"]:checked') ? document.querySelector('input[name="q1"]:checked').value : "Not Answered";
     const improvement = document.getElementById('q3').value;
 
-    // Create the email data to send via EmailJS
     const emailData = {
         name: name,
         age: age,
@@ -22,15 +36,8 @@ form.addEventListener('submit', function(event) {
         improvement: improvement
     };
 
-    // Send the data via EmailJS
-    emailjs.send('service_lrlanqn', 'template_d2tugoi', emailData)
-        .then(function(response) {
-            console.log('Success!', response.status, response.text);
-            alert('Thank you for your feedback!');  // Show success message to the user
-            form.reset();  // Reset form fields after successful submission
-        }, function(error) {
-            console.log('Failed...', error);
-            alert('There was an error submitting your form. Please try again later.');  // Show error message to the user
-        });
+    // Call the function to send the email
+    sendEmail(emailData);
 });
+
 
