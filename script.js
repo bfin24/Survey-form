@@ -1,5 +1,5 @@
 // Initialize EmailJS with your User ID
-init('qXxU3s6g3wE7uLHV9');  // Use your actual EmailJS User ID
+emailjs.init('YOUR_USER_ID');  // Replace with your actual EmailJS User ID
 
 // Get the survey form
 const form = document.getElementById('surveyForm');
@@ -23,7 +23,7 @@ form.addEventListener('submit', function(event) {
     };
 
     // Send the data via EmailJS
-    send('service_lrlanqn', 'template_d2tugoi', emailData)
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailData)
         .then(function(response) {
             console.log('Success!', response.status, response.text);
             alert('Thank you for your feedback!');  // Show success message to the user
@@ -33,3 +33,4 @@ form.addEventListener('submit', function(event) {
             alert('There was an error submitting your form. Please try again later.');  // Show error message to the user
         });
 });
+
