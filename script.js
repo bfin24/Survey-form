@@ -1,15 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Get the survey form element
     const form = document.getElementById('surveyForm');
-    
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
 
+    // Listen for form submission
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();  // Prevent the default form submission behavior
+
+        // Collect data from the form
         const name = document.getElementById('name').value;
         const age = document.getElementById('age').value;
         const satisfaction = document.querySelector('input[name="q1"]:checked') ? document.querySelector('input[name="q1"]:checked').value : "Not Answered";
         const improvement = document.getElementById('q3').value;
 
-        // Prepare the email data
+        // Prepare the email data for EmailJS
         const emailData = {
             service_id: 'service_lrlanqn', // Replace with your EmailJS service ID
             template_id: 'template_d2tugoi', // Replace with your EmailJS template ID
@@ -47,7 +50,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
- // Remove this extra closing brace
-
 
 
