@@ -1,7 +1,7 @@
 // Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize EmailJS with your user ID
-    emailjs.init('YOUR_USER_ID');  // Replace with your actual EmailJS user ID
+    emailjs.init('qXxU3s6g3wE7uLHV9');  // Replace with your actual EmailJS user ID
 
     // Get the survey form element
     const form = document.getElementById('surveyForm');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Send the data to EmailJS
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailData)
+        emailjs.send('service_lrlanqn', 'template_d2tugoi', emailData)
             .then(function(response) {
                 console.log('Success!', response.status, response.text);
                 alert('Thank you for your feedback!');
