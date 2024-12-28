@@ -1,43 +1,40 @@
-const sendEmail = async (emailData) => {
-    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            service_id: 'service_lrlanqn', // Your service ID
-            template_id: 'template_d2tugoi', // Your template ID
-            user_id: 'qXxU3s6g3wE7uLHV9', // Your user ID
-            template_params: emailData
-        }),
+// Wait for the DOM to fully load
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize EmailJS with your user ID
+    emailjs.init('YOUR_USER_ID');  // Replace with your actual EmailJS user ID
+
+    // Get the survey form element
+    const form = document.getElementById('surveyForm');
+
+    // Listen for form submission
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent the default form submission behavior
+
+        // Collect data from the form
+        const name = document.getElementById('name').value;
+        const age = document.getElementById('age').value;
+        const satisfaction = document.querySelector('input[name="q1"]:checked') ? document.querySelector('input[name="q1"]:checked').value : "Not Answered";
+        const improvement = document.getElementById('q3').value;
+
+        // Prepare the data to be sent
+        const emailData = {
+            name: name,
+            age: age,
+            satisfaction: satisfaction,
+            improvement: improvement
+        };
+
+        // Send the data to EmailJS
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailData)
+            .then(function(response) {
+                console.log('Success!', response.status, response.text);
+                alert('Thank you for your feedback!');
+                form.reset();  // Reset the form after submission
+            }, function(error) {
+                console.log('Failed...', error);
+                alert('There was an error submitting your form. Please try again later.');
+            });
     });
-    const result = await response.json();
-    if (response.ok) {
-        alert('Thank you for your feedback!');
-    } else {
-        console.error('Email sending failed:', result);
-        alert('There was an error sending your feedback. Please try again later.');
-    }
-};
-
-form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-
-    // Collect form data
-    const name = document.getElementById('name').value;
-    const age = document.getElementById('age').value;
-    const satisfaction = document.querySelector('input[name="q1"]:checked') ? document.querySelector('input[name="q1"]:checked').value : "Not Answered";
-    const improvement = document.getElementById('q3').value;
-
-    const emailData = {
-        name: name,
-        age: age,
-        satisfaction: satisfaction,
-        improvement: improvement
-    };
-
-    // Call the function to send the email
-    sendEmail(emailData);
 });
 
 
