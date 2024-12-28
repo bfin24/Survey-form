@@ -1,41 +1,53 @@
-// Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize EmailJS with your user ID (replace YOUR_USER_ID with your actual EmailJS user ID)
-    emailjs.init('qXxU3s6g3wE7uLHV9');  // Make sure you have the correct user ID here
-
-    // Get the survey form element
     const form = document.getElementById('surveyForm');
+    
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    // Listen for form submission
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();  // Prevent the default form submission behavior
-
-        // Collect data from the form
         const name = document.getElementById('name').value;
         const age = document.getElementById('age').value;
         const satisfaction = document.querySelector('input[name="q1"]:checked') ? document.querySelector('input[name="q1"]:checked').value : "Not Answered";
         const improvement = document.getElementById('q3').value;
 
-        // Prepare the data to be sent
+        // Prepare the email data
         const emailData = {
-            name: name,
-            age: age,
-            satisfaction: satisfaction,
-            improvement: improvement
+            service_id: 'service_lrlanqn', // Replace with your EmailJS service ID
+            template_id: 'template_d2tugoi', // Replace with your EmailJS template ID
+            user_id: 'qXxU3s6g3wE7uLHV9', // Replace with your EmailJS user ID
+            template_params: {
+                name: name,
+                age: age,
+                satisfaction: satisfaction,
+                improvement: improvement
+            }
         };
 
-        // Send the data to EmailJS using the updated method
-        emailjs.send('service_lrlanqn', 'template_d2tugoi', emailData)
-            .then(function(response) {
-                console.log('Success!', response.status, response.text);
+        // Use fetch API to send the email via EmailJS
+        fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(emailData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 200) {
+                console.log('Success!', data);
                 alert('Thank you for your feedback!');
-                form.reset();  // Reset the form after submission
-            }, function(error) {
-                console.log('Failed...', error);
+                form.reset();
+            } else {
+                console.log('Error sending email:', data);
                 alert('There was an error submitting your form. Please try again later.');
-            });
+            }
+        })
+        .catch(error => {
+            console.log('Error:', error);
+            alert('There was an error submitting your form. Please try again later.');
+        });
     });
-});  // Remove this extra closing brace
+});
+ // Remove this extra closing brace
 
 
 
