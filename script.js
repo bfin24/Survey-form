@@ -1,51 +1,35 @@
-// Initialize EmailJS with your user ID
-(function () {
-    emailjs.init("qXxU3s6g3wE7uLHV9");  // Replace with your EmailJS User ID
-})();
+// Initialize EmailJS with your User ID
+init('qXxU3s6g3wE7uLHV9');  // Use your actual EmailJS User ID
 
-// Listen for form submission
-document.getElementById('surveyForm').addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevent default form submission
+// Get the survey form
+const form = document.getElementById('surveyForm');
 
-    // Collect the answers for the form fields
+// Listen for the form submission
+form.addEventListener('submit', function(event) {
+    event.preventDefault();  // Prevent the default form submission behavior
+
+    // Collect data from the form
     const name = document.getElementById('name').value;
     const age = document.getElementById('age').value;
-    const q1 = document.querySelector('input[name="q1"]:checked');
-    const q2 = document.querySelector('input[name="q2"]:checked');
-    const q3 = document.getElementById('q3').value;
+    const satisfaction = document.querySelector('input[name="q1"]:checked') ? document.querySelector('input[name="q1"]:checked').value : "Not Answered"; 
+    const improvement = document.getElementById('q3').value;
 
-    // Validate that all required fields are filled
-    if (!name || !age || !q1 || !q2) {
-        alert('Please answer all the questions!');
-        return;
-    }
-    document.getElementById('thankYouMessage').style.display = "block";
-
-    // Prepare the email data to be sent to your email address
-    const surveyData = {
+    // Create the email data to send via EmailJS
+    const emailData = {
         name: name,
         age: age,
-        satisfaction: q1.value,
-        recommend: q2.value,
-        featureImprovement: q3
+        satisfaction: satisfaction,
+        improvement: improvement
     };
 
-    // Send the email using EmailJS
-    emailjs.send("service_arucd5v", "template_z0i86kb", {
-        name: surveyData.name,
-        age: surveyData.age,
-        satisfaction: surveyData.satisfaction,
-        recommend: surveyData.recommend,
-        featureImprovement: surveyData.featureImprovement
-    })
-    .then(function(response) {
-        alert("Survey submitted successfully! Check your email.");
-        console.log('Success!', response.status, response.text);
-    }, function(error) {
-        alert("Failed to send survey feedback. Please try again later.");
-        console.log('Failed...', error);
-    });
-
-    // Optionally, reset the form after submission
-    document.getElementById('surveyForm').reset();
+    // Send the data via EmailJS
+    send('service_lrlanqn', 'template_d2tugoi', emailData)
+        .then(function(response) {
+            console.log('Success!', response.status, response.text);
+            alert('Thank you for your feedback!');  // Show success message to the user
+            form.reset();  // Reset form fields after successful submission
+        }, function(error) {
+            console.log('Failed...', error);
+            alert('There was an error submitting your form. Please try again later.');  // Show error message to the user
+        });
 });
