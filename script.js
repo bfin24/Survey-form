@@ -35,8 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('There was an error submitting your form. Please try again later.');
             });
     });
-});
+});  // Remove this extra closing brace
 
-});
 
 
