@@ -1,7 +1,7 @@
 // Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize EmailJS with your user ID
-    emailjs.init('qXxU3s6g3wE7uLHV9');  // Replace with your actual EmailJS user ID
+    // Initialize EmailJS with your user ID (replace YOUR_USER_ID with your actual EmailJS user ID)
+    emailjs.init('qXxU3s6g3wE7uLHV9');  // Make sure you have the correct user ID here
 
     // Get the survey form element
     const form = document.getElementById('surveyForm');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             improvement: improvement
         };
 
-        // Send the data to EmailJS
+        // Send the data to EmailJS using the updated method
         emailjs.send('service_lrlanqn', 'template_d2tugoi', emailData)
             .then(function(response) {
                 console.log('Success!', response.status, response.text);
@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('There was an error submitting your form. Please try again later.');
             });
     });
+});
+
 });
 
 
