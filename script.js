@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const emailData = {
             service_id: 'service_lrlanqn', // Replace with your EmailJS service ID
             template_id: 'template_d2tugoi', // Replace with your EmailJS template ID
-            user_id: 'qXxU3s6g3wE7uLHV9', // Replace with your EmailJS user ID
+            user_id: 'qXxU3s6g3wE7uLHV9D', // Replace with your EmailJS user ID
             template_params: {
                 name: name,
                 age: age,
@@ -33,13 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify(emailData)
         })
-        .then(response => response.json())
+        .then(response => response.text())  // Get response as text
         .then(data => {
-            if (data.status === 200) {
+            if (data === "OK") {
                 console.log('Success!', data);
                 alert('Thank you for your feedback!');
-                form.reset();
+                form.reset();  // Reset the form after submission
             } else {
+                // If the response isn't "OK", treat it as an error
                 console.log('Error sending email:', data);
                 alert('There was an error submitting your form. Please try again later.');
             }
